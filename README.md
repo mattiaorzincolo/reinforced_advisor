@@ -128,3 +128,5 @@ The RL+LSTM overperformed both the market as other two policies with a cumulativ
 <div align='center'>
 <img width="500" height="500" alt="actions_markowitz" src="https://github.com/user-attachments/assets/8f1ea85c-e6d7-4137-8d8a-f2c88f9e4db8" />
 </div>
+
+### Bibliography
