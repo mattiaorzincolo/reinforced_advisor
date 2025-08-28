@@ -65,5 +65,66 @@ he key contribution to this approach is the design of the Actor Network, which i
 
 The Actor Network defined inside the *class ActorRNNNetwork* has a Long Short Term Memory Layer of (64), a Dense layer (fully_connected) with dimensions defined in *actor_fc_layers*  and then normalize with a L2 regularized and a norm layer. In the early training, just a RNN and a Dense layer combined for the ActorRNNNetwork but the model suffered of vanishing gradients, typical issue of Recurrent Networks. LSTM are less prone to this problem and L2 togheter with Norm layer provied a more stabile training.
 
+### Hyperparameters explained
+
+Summary list of hyperparameters:
+* Episode length = 1500
+* N. Iterations = 500
+* Number of environment steps collected per training iteration for the replay buffer = 100
+* Log interval = 10
+* Eval interval, iterations at which the policy is evaluated = 4
+* Model save frequency = 12
+* Replay buffer maximum length = 100000
+* Batch size = 100
+* Eval episodes = 4
+* Standard deviation of the Ornstein-Uhlenbeck (OU) noise = 0.2
+* Damping factor for the OU noise = 0.15
+* 𝜏 = 0.05  Soft update
+* 𝛾 = 0.05 Discount factor for future rewards
+* Actor learning rate = 0.001
+* Critic learning rate = 0.001 
+
+---
+
+### Dataset
+
+The dataset contains time series with relevant trading information for three coins: e DASH, Litecoin (LTC) and Stellar Lumens (STR or XLM in the updated version). For an effective training this kind of model requires a large dataset. Indeed, it is quite large storing exactly two years of 5 minutes stock price for combined 617k observations ranging from 2015-06-30 13:00 to 2017-06-30 13:00. 
+Here the summary stats of the asset in the training phase, crypto market can express massive volatility:
+
+<div align='center'>
+<img width="500" height="500" alt="asset_stats" src="https://github.com/user-attachments/assets/bd0f1d88-f30c-4738-aa0b-16bc6b00fa5f" />
+</div>
 
 ### Results
+
+The first evidence in favour of this tailor made RL model is the learning curve of the training error. Assuming a 'vanilla' agent as an equivalent model to the proposed with the only difference in the design of the Actor Network: 'vanilla' has a simplier network, made just of a fully connected layer without any other regularization methods nor LSTM layers.
+While the 'vanilla' learning seems steady across the training, the custom model significally grows after the 400 timestamp. Remember, this is not actually a training error since there is a reward function instead of a loss, so the more the better.
+
+<div align='center'>
+<img width="500" height="500" alt="training_line_chart" src="https://github.com/user-attachments/assets/eb1b0b86-a65c-4b06-a213-eed9f93b844b" />
+</div>
+
+In order to prove the overall dominance of a Reinforcement Learning model in asset allocation, three policies are tested at the same time: **RL+LSTM, Vanilla RL and Maximum Sharpe Portfolio**.
+
+The RL+LSTM overperformed both the market as other two policies with a cumulative return in the period of **+58,00%** against negative performances of **–44,34%** of the Vanilla RL **–46,21%** of the Maximum Sharpe Portfolio policy.
+
+<div align='center'>
+<img width="500" height="500" alt="test" src="https://github.com/user-attachments/assets/93aa0ab7-c27f-451a-bf14-bbdd3a8a6e78" />
+</div>
+
+### Different Asset Allocation choices
+
+#### Custom (RL+LSTM) policy
+<div align='center'>
+<img width="500" height="500" alt="actions_RL_custom" src="https://github.com/user-attachments/assets/aaf110f3-0b65-4575-b48c-f423099f2550" /><br>
+</div>
+
+#### Vanilla policy
+<div align='center'>
+<img width="500" height="500" alt="actions_vanilla" src="https://github.com/user-attachments/assets/15f09c6f-0627-40ae-8f11-5222ccbecc49" />
+</div>
+
+#### Markowitz policy
+<div align='center'>
+<img width="500" height="500" alt="actions_markowitz" src="https://github.com/user-attachments/assets/8f1ea85c-e6d7-4137-8d8a-f2c88f9e4db8" />
+</div>
