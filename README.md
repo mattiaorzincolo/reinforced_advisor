@@ -40,8 +40,7 @@ Where:
 
 ### Framework: Reinforcement Learning equipped with a Deep Deterministic Policy Gradient (DDPG) algorithm
 
-Reinforcement Learning has a complete different approach. This model actively interact with the environme
-nt (the market), which send observation to an Agent one timestep at time. The Agent takes an action according with the obseravtion it gets, trying to maximize the value of a reward function:
+Reinforcement Learning has a complete different approach. This model actively interact with the environment (the market), which sends observation to an Agent one timestep at time. The Agent takes an action according with the obseravtion it gets, trying to maximize the value of a reward function:
 <div align='center'>
 <img width="274" alt="rl" src="https://github.com/user-attachments/assets/81fb4b33-22af-4a07-a1d0-b928b46e22b0" />
 </div>
@@ -61,9 +60,9 @@ Key elements of a DDPG framework:
 * Target critic $Q_t$(𝑆, 𝐴, $\phi_t$): to improve the stability of the optimization, the agent periodically updates the target critic learnable parameters $\phi_t$ using the latest critic parameter values. 
 
 The Deterministic Policy Gradient becomes "Deep" when it relies on Deep Neural Network to approximate the parameters $\theta$ and $\phi$ of the Actor and the Critic. 
-he key contribution to this approach is the design of the Actor Network, which is responsible for defyning the actions to be taken, capture price movements and maximize the return of our portfolio.
+The key contribution to this approach is the design of the Actor Network, which is responsible for defyning the actions to be taken, capture price movements and maximize the return of our portfolio.
 
-The Actor Network defined inside the *class ActorRNNNetwork* has a Long Short Term Memory Layer of (64), a Dense layer (fully_connected) with dimensions defined in *actor_fc_layers*  and then normalize with a L2 regularized and a norm layer. In the early training, just a RNN and a Dense layer combined for the ActorRNNNetwork but the model suffered of vanishing gradients, typical issue of Recurrent Networks. LSTM are less prone to this problem and L2 togheter with Norm layer provied a more stabile training.
+The Actor Network defined inside the *class ActorRNNNetwork* has a Long Short Term Memory Layer of (64), a Dense layer (fully_connected) with dimensions defined in *actor_fc_layers*  and then regularized with a L2 Reg and a norm layer. In the early training, just a RNN and a Dense layer combined for the ActorRNNNetwork but the model suffered of vanishing gradients, typical issue of Recurrent Networks. LSTM are less prone to this problem and L2 togheter with Norm layer provied a more stabile training.
 
 ### Hyperparameters explained
 
@@ -88,7 +87,7 @@ Summary list of hyperparameters:
 
 ### Dataset
 
-The dataset contains time series with relevant trading information for three coins: e DASH, Litecoin (LTC) and Stellar Lumens (STR or XLM in the updated version). For an effective training this kind of model requires a large dataset. Indeed, it is quite large storing exactly two years of 5 minutes stock price for combined 617k observations ranging from 2015-06-30 13:00 to 2017-06-30 13:00. 
+The dataset contains time series with relevant trading information for three coins: DASH, Litecoin (LTC) and Stellar Lumens (STR or XLM in the updated version). For an effective training this kind of model requires a large dataset. Indeed, it is quite large storing exactly two years of 5 minutes stock price for combined 617k observations ranging from 2015-06-30 13:00 to 2017-06-30 13:00. 
 Here the summary stats of the asset in the training phase, crypto market can express massive volatility:
 
 <div align='center'>
@@ -97,7 +96,7 @@ Here the summary stats of the asset in the training phase, crypto market can exp
 
 ### Results
 
-The first evidence in favour of this tailor made RL model is the learning curve of the training error. Assuming a 'vanilla' agent as an equivalent model to the proposed with the only difference in the design of the Actor Network: 'vanilla' has a simplier network, made just of a fully connected layer without any other regularization methods nor LSTM layers.
+The first evidence in favour of this tailor made RL model is the learning curve of the training error. Assuming a 'vanilla' agent as an equivalent model to the proposed one, with the only difference in the design of the Actor Network: 'vanilla' has a simplier network, made just of a fully connected layer without any other regularization methods nor LSTM layers.
 While the 'vanilla' learning seems steady across the training, the custom model significally grows after the 400 timestamp. Remember, this is not actually a training error since there is a reward function instead of a loss, so the more the better.
 
 <div align='center'>
