@@ -129,4 +129,51 @@ The RL+LSTM overperformed both the market as other two policies with a cumulativ
 <img width="500" height="500" alt="actions_markowitz" src="https://github.com/user-attachments/assets/8f1ea85c-e6d7-4137-8d8a-f2c88f9e4db8" />
 </div>
 
-### Bibliography
+### References
+
+<h5> Managing Reinforcement Learning within a continuous environment </h5>
+
+Lillicrap, T. P., Hunt, J. J., Pritzel, A., Heess, N. M., Erez, T., Tassa, Y., Silver, D., & Wierstra, D. (2015).  
+*Continuous control with deep reinforcement learning*.  
+arXiv:1509.02971. [https://arxiv.org/abs/1509.02971](https://arxiv.org/abs/1509.02971)
+
+<h5> Evidence of using Recurrent Neural Networks for Portfolio selection </h5>
+
+Lin, C.-M., Yeh, S.-N., Lee, C.-H., & Lee, C.-C. (2006).  
+*Recurrent neural network for dynamic portfolio selection*.  
+Applied Mathematics and Computation, 175(2), 1139–1146.  
+doi: [10.1016/j.amc.2005.08.031](https://doi.org/10.1016/j.amc.2005.08.031)
+
+<h5> Markowitz model explained </h5>
+
+Markowitz, H. (1952).  
+*Portfolio selection*.  
+The Journal of Finance, 7(1), 77–91.  
+doi: [10.2307/2975974](https://doi.org/10.2307/2975974)
+
+<h5> Well-known toy model for Reinforcement Learning </h5>
+
+Mnih, V., Kavukcuoglu, K., Silver, D., Graves, A., Antonoglou, I., Wierstra, D., & Riedmiller, M. (2013).  
+*Playing Atari with deep reinforcement learning*.  
+arXiv preprint arXiv:1312.5602.  
+[https://arxiv.org/abs/1312.5602](https://arxiv.org/abs/1312.5602)
+
+<h5> Exhaustive explaination about Reinforcement Learning </h5>
+
+Sutton, R. S., & Barto, A. G. (2020).  
+*Reinforcement learning: An introduction* (2nd ed.).  
+Cambridge, MA: MIT Press.  
+[http://incompleteideas.net/book/the-book-2nd.html](http://incompleteideas.net/book/the-book-2nd.html)
+
+<h5> Greatest inspirations for this work </h5>
+
+Wang, H., & Yu, S. (2021).  
+*Robo-Advising: Enhancing Investment with Inverse Optimization and Deep Reinforcement Learning*.  
+In *2021 20th IEEE International Conference on Machine Learning and Applications (ICMLA)* (pp. 365–372). IEEE.  
+doi: [10.1109/ICMLA52953.2021.00063](https://doi.org/10.1109/ICMLA52953.2021.00063)
+
+<h4> And a particular mention to Noufal Samsuding for providing explaination, code and data resulting as an effective baseline for my project. Take a look at his article on Medium </h4>
+
+Samsudin, N. (2021).  
+*Portfolio Optimization using Reinforcement Learning, Medium*. <br>
+(https://medium.com/analytics-vidhya/portfolio-optimization-using-reinforcementlearning-1b5eba5db072)
